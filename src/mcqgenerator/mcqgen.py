@@ -2,15 +2,14 @@ import os
 import json
 import pandas as pd
 import traceback
+from dotenv import load_dotenv
+
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
-import PyPDF2
-import langchain
 from langchain_core.globals import set_debug
 from langchain_core.runnables import RunnablePassthrough
-from dotenv import load_dotenv
-from src.mcqgenerator.utils import read_file, get_table_data
+
 
 load_dotenv()
 set_debug(True)
