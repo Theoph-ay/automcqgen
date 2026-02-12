@@ -14,3 +14,5 @@ logging.basicConfig(
     filename=LOG_FILEPATH,
     format="[%(asctime)s] %(lineno)d %(name)s -%(levelname)s -%(message)s"
 )
+
+logger = logging.getLogger("mcqgen")
