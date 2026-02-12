@@ -1,7 +1,9 @@
 groq
 langchain_groq
 langchain
+langchain-core
 streamlit
 python-dotenv
 PyPDF2
 setuptools
+langchain_community
