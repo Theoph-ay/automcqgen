@@ -18,9 +18,6 @@ llm = ChatGroq(model="openai/gpt-oss-120b",
 api_key=os.getenv("GROQ_API_KEY"),
 temperature=0.5)
 
-with open(r"C:\Users\Loba\automcqgen\response.json", "r") as f:
-    response_json = json.dumps(f.read(), indent=2)
-
 #PROMPT 1
 quiz_generation_prompt = ChatPromptTemplate.from_messages([
     (

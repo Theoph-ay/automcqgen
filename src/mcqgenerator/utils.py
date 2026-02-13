@@ -6,14 +6,14 @@ import traceback
 def read_file(file):
     if file.name.endswith(".pdf"):
         try:
-            pdf_reader=PyPDF2.PdfFileReader(file)
+            pdf_reader=PyPDF2.PdfReader(file)
             text=""
             for page in pdf_reader.pages:
                 text+=page.extract_text()
             return text
 
         except Exception as e:
-            raise Exception("Error reading PDF file")
+            raise Exception(f"Error reading PDF file: {e}")
 
     elif file.name.endswith(".txt"):
         return file.read().decode("utf-8")
@@ -25,7 +25,27 @@ def read_file(file):
 def get_table_data(quiz_str):
     try:
         #covert the quiz from string to dict
-        quiz_dict=json.loads(quiz_str)
+        if isinstance(quiz_str, dict):
+            quiz_dict = quiz_str
+        else:
+            # Clean up the string if it contains markdown
+            if "```json" in quiz_str:
+                quiz_str = quiz_str.split("```json")[1].split("```")[0]
+            elif "```" in quiz_str:
+                quiz_str = quiz_str.split("```")[1].split("```")[0]
+            
+            # Find start and end of json
+            start = quiz_str.find('{')
+            end = quiz_str.rfind('}') + 1
+            if start != -1 and end != -1:
+                quiz_str = quiz_str[start:end]
+                
+            import ast
+            try:
+                quiz_dict = json.loads(quiz_str)
+            except Exception:
+                 quiz_dict = ast.literal_eval(quiz_str)
+            
         quiz_table_data=[]
 
         #iterate over the dict and extract info
@@ -46,5 +66,6 @@ def get_table_data(quiz_str):
             )
         return quiz_table_data
     except Exception as e:
-        traceback.print_exception(type(e), e, e.__traceback__)
+        traceback.print_exc()
+        print(f"Failed quiz_str: {quiz_str}")
         raise Exception("Error parsing quiz data")
