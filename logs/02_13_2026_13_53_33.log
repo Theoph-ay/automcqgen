@@ -1,0 +1,109 @@
+[2026-02-13 13:54:34,392] 1025 httpx -INFO -HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-02-13 13:54:43,698] 1025 httpx -INFO -HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-02-13 14:03:04,216] 1025 httpx -INFO -HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-02-13 14:03:04,703] 151 mcqgen -ERROR -Traceback (most recent call last):
+  File "C:\Users\Loba\automcqgen\Streamlitapp4.py", line 142, in <module>
+    result = generate_evaluate_chain.invoke({
+        "text": text,
+    ...<3 lines>...
+        "response_json": response_json
+    })
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\runnables\base.py", line 3155, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\runnables\passthrough.py", line 507, in invoke
+    return self._call_with_config(self._invoke, input, config, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\runnables\base.py", line 2060, in _call_with_config
+    context.run(
+    ~~~~~~~~~~~^
+        call_func_with_variable_args,  # type: ignore[arg-type]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ),
+    ^
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\runnables\config.py", line 452, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\runnables\passthrough.py", line 493, in _invoke
+    **self.mapper.invoke(
+      ~~~~~~~~~~~~~~~~~~^
+        value,
+        ^^^^^^
+        patch_config(config, callbacks=run_manager.get_child()),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **kwargs,
+        ^^^^^^^^^
+    ),
+    ^
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\runnables\base.py", line 3882, in invoke
+    key: future.result()
+         ~~~~~~~~~~~~~^^
+  File "C:\Users\Loba\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\_base.py", line 450, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Loba\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\_base.py", line 395, in __get_result
+    raise self._exception
+  File "C:\Users\Loba\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\Loba\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\runnables\base.py", line 3865, in _invoke_step
+    return context.run(
+           ~~~~~~~~~~~^
+        step.invoke,
+        ^^^^^^^^^^^^
+        input_,
+        ^^^^^^^
+        child_config,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\runnables\base.py", line 3157, in invoke
+    input_ = context.run(step.invoke, input_, config)
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 402, in invoke
+    self.generate_prompt(
+    ~~~~~~~~~~~~~~~~~~~~^
+        [self._convert_input(input)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ).generations[0][0],
+    ^
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1121, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 931, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1233, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\langchain_groq\chat_models.py", line 621, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\groq\_base_client.py", line 1242, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Loba\automcqgen\.venv\Lib\site-packages\groq\_base_client.py", line 1044, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'Please reduce the length of the messages or completion.', 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+
