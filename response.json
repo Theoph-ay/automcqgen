@@ -7,7 +7,9 @@
             "c": "choice here",
             "d": "choice here"
         },
-        "correct": "correct answer"
+        "correct": "correct answer",
+        "hint": "a helpful hint for the student",
+        "explanation": "why the correct answer is right and others are wrong"
     },
     "2": {
         "mcq": "multiple choice question",
@@ -17,7 +19,9 @@
             "c": "choice here",
             "d": "choice here"
         },
-        "correct": "correct answer"
+        "correct": "correct answer",
+        "hint": "a helpful hint for the student",
+        "explanation": "why the correct answer is right and others are wrong"
     },
     "3": {
         "mcq": "multiple choice question",
@@ -27,6 +31,8 @@
             "c": "choice here",
             "d": "choice here"
         },
-        "correct": "correct answer"
+        "correct": "correct answer",
+        "hint": "a helpful hint for the student",
+        "explanation": "why the correct answer is right and others are wrong"
     }
 }

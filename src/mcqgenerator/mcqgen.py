@@ -29,6 +29,10 @@ quiz_generation_prompt = ChatPromptTemplate.from_messages([
         Make sure to format your response like the RESPONSE_JSON below and use it as a guide. 
         Ensure to make {number} MCQs.
         
+        For each question you MUST also include:
+        - "hint": A helpful clue that nudges the student toward the correct answer without giving it away directly.
+        - "explanation": A clear explanation of why the correct answer is right and why the other options are wrong.
+        
         ### RESPONSE_JSON
         {response_json}"""
     ),
