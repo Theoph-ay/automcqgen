@@ -50,17 +50,17 @@ def get_table_data(quiz_str):
 
         #iterate over the dict and extract info
         for key, value in quiz_dict.items():
-            mcq=value["mcq"]
-            options=" || ".join(
-                [
-                    f"{option}-> {option_value}" for option, option_value in value["options"].items()
-                ]
-            )
-            correct=value["correct"]
+            mcq = value["mcq"]
+            options = value["options"]
+            correct = value["correct"]
+            
             quiz_table_data.append(
                 {
                     "MCQ": mcq,
-                    "Options": options,
+                    "Option A": options.get("a") or options.get("A"),
+                    "Option B": options.get("b") or options.get("B"),
+                    "Option C": options.get("c") or options.get("C"),
+                    "Option D": options.get("d") or options.get("D"),
                     "Correct Answer": correct
                 }
             )
